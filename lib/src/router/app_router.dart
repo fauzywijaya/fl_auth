@@ -1,10 +1,11 @@
 import 'package:fl_auth/src/core/presentations/home/home_page.dart';
+import 'package:fl_auth/src/core/presentations/onboarding/onboarding_page.dart';
 import 'package:fl_auth/src/core/presentations/presentations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-enum Routes { signin, signup, home, test }
+enum Routes { signin, signup, home, test, onboarding }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -12,9 +13,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     routerNeglect: true,
     debugLogDiagnostics: true,
-    initialLocation: '/signin',
+    initialLocation: '/onboarding',
     navigatorKey: navigatorKey,
     routes: [
+      GoRoute(
+        name: Routes.onboarding.name,
+        path: '/onboarding',
+        builder: (context, state) => const OnBoardingPage(),
+      ),
       GoRoute(
         name: Routes.signin.name,
         path: '/signin',
